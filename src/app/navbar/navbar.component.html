@@ -1,0 +1,49 @@
+<p-menubar [model]="items" class="sticky top-0 z-10">
+    <ng-template #start>
+        <a [routerLink]="'/'" class="p-menubar-item-link">
+            <img src="images/logo.svg" alt="logo" class="w-10 h-10" />
+        </a>        
+    </ng-template>
+    <ng-template #item let-item let-root="root">
+        <ng-container *ngIf="item.route; else urlRef">
+            <a [routerLink]="item.route" class="p-menubar-item-link">
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+            </a>
+        </ng-container>
+        <ng-template #urlRef>
+            <a *ngIf="item.url; else noLink" [href]="item.url" class="p-menubar-item-link">
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+            </a>
+        </ng-template>
+        <ng-template #noLink>
+            <div class="p-menubar-item-link">
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+                <span class="pi pi-fw pi-angle-down ml-2"></span>
+            </div>
+        </ng-template>
+    </ng-template>
+    <ng-template #end>
+        <div class="flex items-center gap-3">
+            <input type="text" pInputText placeholder="Search" class="w-36" />
+            <div *ngIf="isAuthenticated; else notAuthenticated">                
+                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+            </div>
+            <ng-template #notAuthenticated>
+                <a [routerLink]="'/auth'" class="p-menubar-item-link">
+                    <span class="pi pi-user"></span>
+                    <span class="ml-2">Sign In</span>
+                </a>
+            </ng-template>
+            <a class="p-menubar-item-link" (click)="visibleSidebar1 = true">
+                <span class="pi pi-cart-minus"></span>
+                <span class="ml-2">Carrito</span>
+            </a>
+        </div>        
+    </ng-template>
+</p-menubar>
+<p-drawer [(visible)]="visibleSidebar1" header="Carrito" position="right" styleClass="md:!w-100 lg:!w-[40rem]">
+    <app-cart/>
+</p-drawer>
