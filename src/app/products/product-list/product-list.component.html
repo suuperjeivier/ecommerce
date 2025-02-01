@@ -49,10 +49,10 @@
       <div *ngIf="!isLoading; else skeletons">
         <div *ngFor="let item of items; let first = first">
             <div
-                class="flex flex-col sm:flex-row sm:items-center p-6 gap-4"
+                class="flex flex-col sm:flex-row sm:items-center p-6 gap-4" style="border: 1px solid orange"
                 [ngClass]="{ 'border-t border-surface-200 dark:border-surface-700': !first }"
             >
-                <div class="md:w-40 relative">
+                <div class="md:w-40 relative" style="border: 1px solid green;">
                     <img
                         class="block xl:block mx-auto rounded w-full"
                         [src]="item.image"
@@ -67,8 +67,8 @@
                         [style.top.px]="4"
                     />
                 </div>
-                <div class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6">
-                    <div class="flex flex-row md:flex-col justify-between items-start gap-2">
+                <div class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6" style="border: 1px solid red">
+                    <div class="flex flex-row md:flex-col justify-between items-start gap-2" style="border: 1px solid blue">
                         <div>
                             <span class="font-medium text-surface-500 dark:text-surface-400 text-sm">{{ item.category }}</span>
                             <div class="text-lg font-medium mt-2">{{ item.title }}</div>

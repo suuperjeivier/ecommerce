@@ -1,1 +1,44 @@
-<p>checkout works!</p>
+<div class="checkout flex flex-row mx-5">
+    <section class="information">
+        <div class="card grid grid-cols-1 md:grid-cols-2 gap-4 pb-5">
+            <span>Información de Contacto</span>
+            <p-inputgroup>
+                <p-inputgroup-addon>
+                    <i class="pi pi-user"></i>
+                </p-inputgroup-addon>
+                <input pInputText placeholder="Email" />
+            </p-inputgroup>
+        </div>
+        <div class="card grid grid-cols-1 md:grid-cols-2 gap-4">
+            <span>Domicilio de Entrega</span>
+            <p-inputgroup>
+                <p-inputgroup-addon>
+                    <i class="pi pi-user"></i>
+                </p-inputgroup-addon>
+                <input pInputText placeholder="País" />
+            </p-inputgroup>
+        
+            <p-inputgroup>
+                <p-inputgroup-addon>$</p-inputgroup-addon>
+                <p-inputnumber placeholder="Price" />
+                <p-inputgroup-addon>.00</p-inputgroup-addon>
+            </p-inputgroup>
+        
+            <p-inputgroup>
+                <p-inputgroup-addon>www</p-inputgroup-addon>
+                <input pInputText placeholder="Website" />
+            </p-inputgroup>
+        
+            <p-inputgroup>
+                <p-inputgroup-addon>
+                    <i class="pi pi-map"></i>
+                </p-inputgroup-addon>
+            </p-inputgroup>
+        </div>
+
+    </section>
+    <section class="summary">
+
+    </section>
+
+</div>
