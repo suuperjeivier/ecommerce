@@ -4,12 +4,14 @@ import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { ChipModule } from 'primeng/chip';
+import { ImageModule } from 'primeng/image';
+import { GalleriaModule } from 'primeng/galleria';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
-  imports: [CommonModule, ChipModule]
+  imports: [CommonModule, ChipModule, ImageModule, GalleriaModule]
 })
 export class ProductDetailsComponent implements OnInit {
   product: any;

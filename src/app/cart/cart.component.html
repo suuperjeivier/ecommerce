@@ -7,11 +7,7 @@
                     [ngClass]="{ 'border-t border-surface-200 dark:border-surface-700': !first }"
                 >
                     <div class="md:w-40 relative">
-                        <img
-                            class="block xl:block mx-auto rounded-border w-full"
-                            [src]="item.image"
-                            [alt]="item.title"
-                        />
+                        <p-image class="block xl:block mx-auto rounded-border w-full" [src]="item.image" [alt]="item.title" width="250" [preview]="true" />
                         <p-tag
                             [value]="item.inventoryStatus"
                             [severity]="'secondary'"
