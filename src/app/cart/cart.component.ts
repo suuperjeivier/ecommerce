@@ -9,19 +9,23 @@ import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
-
-
+import { StepperModule } from 'primeng/stepper';
+import {PanelModule} from 'primeng/panel';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
   imports: [DataViewModule, TagModule, ButtonModule, CommonModule,
-     ImageModule, TableModule, RatingModule, FormsModule, InputNumberModule]
+     ImageModule, TableModule, RatingModule, FormsModule, InputNumberModule, StepperModule, PanelModule]
 })
 export class CartComponent implements OnInit {
   items: any[] = [];
   totalQuantity: number = 0;
+  activeStep: number = 1;
+  address: string = '';
+  city: string = '';
+  zip: string = '';
 
   constructor(private cartService: CartService) {}
 

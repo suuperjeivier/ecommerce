@@ -12,7 +12,7 @@ import { CartComponent } from '../../cart/cart.component';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
   imports: [CommonModule, ChipModule, ImageModule],
-  providers: [AppComponent]
+  providers: [AppComponent, CartComponent]
 })
 export class ProductDetailsComponent implements OnInit {
   product: any;

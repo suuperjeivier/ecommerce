@@ -1,44 +1,180 @@
-<div class="card">
-    <p-table [value]="items" [tableStyle]="{ 'min-width': '60rem', 'max-width': '60rem' }">
-        <ng-template #caption>
-            <div class="flex items-center justify-between">
-                <span class="text-xl font-bold">Carrito</span>
-                <p-button icon="pi pi-refresh" rounded raised />
-            </div>
-        </ng-template>
-        <ng-template #header>
-            <tr>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Price</th>
-                <th>Quantity</th>
-            </tr>
-        </ng-template>
-        <ng-template #body let-product>
-            <tr>
-                <td>{{ product.title }}</td>
-                <td>
-                    <img
-                        [src]="product.image"
-                        [alt]="product.title"
-                        class="w-24 rounded"
-                    />
-                </td>
-                <td>{{ product.price | currency: 'USD' }}</td>
-                
-                <td>
-                    <p-inputnumber [(ngModel)]="product.quantity" [showButtons]="true" 
-                        buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" inputId="mile" suffix=" pc" [inputStyle]="{ width: '5rem' }">
-                        <ng-template #incrementbuttonicon>
-                            <span class="pi pi-plus"></span>
-                        </ng-template>
-                        <ng-template #decrementbuttonicon>
-                            <span class="pi pi-minus"></span>
-                        </ng-template>
-                    </p-inputnumber>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template #footer> In total there are {{ items ? items.length : 0 }} products. </ng-template>
-    </p-table>
-</div>
+
+<p-panel header="Header">
+    <p-stepper [(value)]="activeStep" class="basis-[40rem] justify-between" [linear]="true">
+        <p-step-list>
+            <p-step [value]="1" class="flex flex-row flex-auto gap-2">
+                <ng-template #content let-activateCallback="activateCallback" let-value="value">
+                    <button class="bg-transparent border-0 inline-flex flex-col gap-2" (click)="activateCallback()">
+                        <span
+                            class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+                            [ngClass]="{
+                                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                                'border-surface': value > activeStep
+                            }"
+                        >
+                            <i class="pi pi-user"></i>
+                        </span>
+                    </button>
+                </ng-template>
+            </p-step>
+    
+            <p-step [value]="2" class="flex flex-row flex-auto gap-2">
+                <ng-template #content let-activateCallback="activateCallback" let-value="value">
+                    <button class="bg-transparent border-0 inline-flex flex-col gap-2" (click)="activateCallback()">
+                        <span
+                            class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+                            [ngClass]="{
+                                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                                'border-surface': value > activeStep
+                            }"
+                        >
+                            <i class="pi pi-star"></i>
+                        </span>
+                    </button>
+                </ng-template>
+            </p-step>
+    
+            <p-step [value]="3" class="flex flex-row flex-auto gap-2">
+                <ng-template #content let-activateCallback="activateCallback" let-value="value">
+                    <button class="bg-transparent border-0 inline-flex flex-col gap-2" (click)="activateCallback()">
+                        <span
+                            class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+                            [ngClass]="{
+                                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                                'border-surface': value > activeStep
+                            }"
+                        >
+                            <i class="pi pi-id-card"></i>
+                        </span>
+                    </button>
+                </ng-template>
+            </p-step>
+
+            <p-step [value]="4" class="flex flex-row flex-auto gap-2">
+                <ng-template #content let-activateCallback="activateCallback" let-value="value">
+                    <button class="bg-transparent border-0 inline-flex flex-col gap-2" (click)="activateCallback()">
+                        <span
+                            class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+                            [ngClass]="{
+                                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                                'border-surface': value > activeStep
+                            }"
+                        >
+                            <i class="pi pi-verified"></i>
+                        </span>
+                    </button>
+                </ng-template>
+            </p-step>
+        </p-step-list>
+    
+        <p-step-panels>
+            <p-step-panel [value]="1">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col gap-2 mx-auto" style="min-height: 16rem; max-width: 60rem">
+                        <div class="text-center mt-4 mb-4 text-xl font-semibold">Edit your products</div>
+                        <div class="card">
+                            <p-table [value]="items" [tableStyle]="{ 'min-width': '60rem' }">
+                                <ng-template #caption>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xl font-bold">Carrito</span>
+                                        <p-button icon="pi pi-refresh" rounded raised />
+                                    </div>
+                                </ng-template>
+                                <ng-template #header>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template #body let-product>
+                                    <tr>
+                                        <td>{{ product.title }}</td>
+                                        <td>
+                                            <img
+                                                [src]="product.image"
+                                                [alt]="product.title"
+                                                class="w-24 rounded"
+                                            />
+                                        </td>
+                                        <td>{{ product.price | currency: 'USD' }}</td>
+                                        
+                                        <td>
+                                            <p-inputnumber [(ngModel)]="product.quantity" [showButtons]="true" 
+                                                buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" inputId="mile" suffix=" pc" [inputStyle]="{ width: '5rem' }">
+                                                <ng-template #incrementbuttonicon>
+                                                    <span class="pi pi-plus"></span>
+                                                </ng-template>
+                                                <ng-template #decrementbuttonicon>
+                                                    <span class="pi pi-minus"></span>
+                                                </ng-template>
+                                            </p-inputnumber>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template #footer> In total there are {{ items ? items.length : 0 }} products. </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-end">
+                        <p-button (onClick)="activateCallback(2)" label="Next" icon="pi pi-arrow-right" iconPos="right" />
+                    </div>
+                </ng-template>
+            </p-step-panel>
+    
+            <p-step-panel [value]="2">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col gap-2 mx-auto" style="min-height: 16rem; max-width: 24rem">
+                        <div class="text-center mt-4 mb-4 text-xl font-semibold">Delivery Address</div>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <div class="field">
+                                <input [(ngModel)]="address" pInputText id="address" type="text" placeholder="Address" fluid />
+                            </div>
+                            <div class="field">
+                                <input [(ngModel)]="city" pInputText id="city" type="text" placeholder="City" fluid />
+                            </div>
+                            <div class="field">
+                                <input [(ngModel)]="zip" pInputText id="zip" type="text" placeholder="Zip" fluid />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-between">
+                        <p-button (onClick)="activateCallback(1)" label="Back" severity="secondary" icon="pi pi-arrow-left" />
+                        <p-button (onClick)="activateCallback(3)" label="Next" icon="pi pi-arrow-right" iconPos="right" />
+                    </div>
+                </ng-template>
+            </p-step-panel>
+    
+            <p-step-panel [value]="3">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col gap-2 mx-auto" style="min-height: 16rem; max-width: 24rem">
+                        <div class="text-center mt-4 mb-4 text-xl font-semibold">Payment</div>
+                        <div class="text-center">
+                            <span class="pi pi-paypal" style="font-size: 5.5rem"></span>
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-between">
+                        <p-button (onClick)="activateCallback(2)" label="Back" severity="secondary" icon="pi pi-arrow-left" />
+                        <p-button (onClick)="activateCallback(4)" label="Next" icon="pi pi-arrow-right" iconPos="right" />
+                    </div>
+                </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="4">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col gap-2 mx-auto" style="min-height: 16rem; max-width: 24rem">
+                        <div class="text-center mt-4 mb-4 text-xl font-semibold">Order confirmed</div>
+                        <div class="text-center">
+                            <span class="pi pi-truck" style="font-size: 5.5rem"></span>
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-start">
+                        <p-button (onClick)="activateCallback(3)" label="Back" severity="secondary" icon="pi pi-arrow-left" />
+                    </div>
+                </ng-template>
+            </p-step-panel>
+        </p-step-panels>
+    </p-stepper>
+    
+</p-panel>
