@@ -5,6 +5,10 @@ import {TagModule} from 'primeng/tag';
 import {ButtonModule} from 'primeng/button';
 import {ImageModule} from 'primeng/image';
 import { CommonModule } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 
@@ -12,15 +16,18 @@ import { CommonModule } from '@angular/common';
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  imports: [DataViewModule, TagModule, ButtonModule, CommonModule, ImageModule]
+  imports: [DataViewModule, TagModule, ButtonModule, CommonModule,
+     ImageModule, TableModule, RatingModule, FormsModule, InputNumberModule]
 })
 export class CartComponent implements OnInit {
   items: any[] = [];
+  totalQuantity: number = 0;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.items = this.cartService.getCartItems();
+    this.totalQuantity = this.cartService.getTotalQuantity();
   }
 
   clearCart() {
@@ -29,5 +36,22 @@ export class CartComponent implements OnInit {
 
   products() {
     return this.cartService.getCartItems();
+  }
+
+  addToCart(product: any): void {
+   this.cartService.addToCart(product);
+  }
+
+  getSeverity(status: string) {
+    switch (status) {
+        case 'INSTOCK':
+            return 'success';
+        case 'LOWSTOCK':
+            return 'warn';
+        case 'OUTOFSTOCK':
+            return 'danger';
+        default:
+            return 'success';
+    }
   }
 }

@@ -13,13 +13,14 @@ import { CartComponent } from '../cart/cart.component';
   imports: [BadgeModule, MenubarModule, CommonModule, AvatarModule, RouterModule, DrawerModule, CartComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
+  providers: [CartComponent]
 })
 export class NavbarComponent implements OnInit {
   items: MenuItem[];
   isAuthenticated: boolean;
   visibleSidebar1: boolean;
 
-  constructor() { 
+  constructor(public cartComponent: CartComponent) { 
     this.items = [];
     this.isAuthenticated = false;
     this.visibleSidebar1 = false;

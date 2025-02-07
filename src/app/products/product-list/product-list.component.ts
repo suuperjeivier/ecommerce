@@ -30,4 +30,9 @@ export class ProductListComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
+  trackByFn(index:number, item:any) {
+
+    return index + item.id; // Unique identifier for each item
+  }
 }

@@ -6,6 +6,9 @@ import { MenubarModule } from 'primeng/menubar';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { ButtonModule } from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { AuthService } from './services/auth.service';
     AvatarModule,
     MenubarModule,
     CommonModule,
-    RouterModule
+    RouterModule, 
+    BrowserAnimationsModule,
+    ToastModule,
+    ButtonModule
   ],
   providers: [AuthService],
   bootstrap: []

@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
-import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { ChipModule } from 'primeng/chip';
 import { ImageModule } from 'primeng/image';
-import { GalleriaModule } from 'primeng/galleria';
+import { AppComponent } from '../../app.component';
+import { CartComponent } from '../../cart/cart.component';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
-  imports: [CommonModule, ChipModule, ImageModule, GalleriaModule]
+  imports: [CommonModule, ChipModule, ImageModule],
+  providers: [AppComponent]
 })
 export class ProductDetailsComponent implements OnInit {
   product: any;
@@ -19,7 +20,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService
+    private cartComponent: CartComponent,
+    private appService: AppComponent
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +34,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product: any) {
-    this.cartService.addToCart(product);
-    window.alert('Your product has been added to the cart!');
+    this.cartComponent.addToCart(product);
+    
+    this.appService.showSuccess('Product added to cart');
+    
   }
 }

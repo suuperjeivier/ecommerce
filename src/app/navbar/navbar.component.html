@@ -38,7 +38,7 @@
                 </a>
             </ng-template>
             <a class="p-menubar-item-link" (click)="visibleSidebar1 = true">
-                <span class="pi pi-cart-minus"></span>
+                <span class="pi pi-cart-minus" pBadge [value]=cartComponent.totalQuantity></span>
                 <span class="ml-2">Carrito</span>
             </a>
         </div>        
